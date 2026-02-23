@@ -6,9 +6,10 @@
   <title>Rohit Lekhrajani | Product Engineer</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
   <!-- Navigation -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -34,6 +35,10 @@
 
   <!-- Hero -->
   <section class="hero" id="hero">
+    <div class="wormhole-portal" aria-hidden="true">
+      <div class="wormhole-ring wormhole-ring-1"></div>
+      <div class="wormhole-ring wormhole-ring-2"></div>
+    </div>
     <div class="hero-wrapper">
     <div class="hero-content">
       <p class="hero-greeting">Hi, I'm</p>
@@ -60,8 +65,12 @@
       </div>
     </div>
     <div class="hero-image">
-      <div class="hero-image-wrapper">
-        <img src="profile.png" alt="Rohit Lekhrajani" />
+      <div class="gargantua-container">
+        <div class="accretion-disk accretion-disk-horizontal" aria-hidden="true"></div>
+        <div class="accretion-disk accretion-disk-vertical" aria-hidden="true"></div>
+        <div class="hero-image-wrapper">
+          <img src="profile.png" alt="Rohit Lekhrajani" />
+        </div>
       </div>
     </div>
     </div>
@@ -317,9 +326,8 @@
               <div class="project-impact">Feature-flagged gradual rollout</div>
               <div class="project-tags">
                 <span>Elixir</span>
-                <span>Phoenix</span>
+                <span>Phoenix LiveView</span>
                 <span>LaunchDarkly</span>
-                <span>LiveView</span>
                 <span>Feature Flags</span>
               </div>
             </div>
@@ -354,8 +362,7 @@
         <div class="skill-category">
           <h3>Frameworks & Libraries</h3>
           <div class="skill-tags">
-            <span>Phoenix</span>
-            <span>LiveView</span>
+            <span>Phoenix LiveView</span>
             <span>React</span>
             <span>Flask</span>
             <span>Django</span>
