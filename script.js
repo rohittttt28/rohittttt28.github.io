@@ -61,6 +61,34 @@ function showPage(index, direction) {
     setTimeout(() => card.classList.add('visible'), i * 100);
   });
 
+  // Recheck title and description overflow after page becomes visible
+  setTimeout(() => {
+    target.querySelectorAll('.project-title').forEach(titleWrap => {
+      if (titleWrap.classList.contains('expanded')) return;
+      const h3 = titleWrap.querySelector('h3');
+      const toggle = titleWrap.querySelector('.project-title-toggle');
+      if (h3 && toggle) {
+        toggle.style.display = (h3.scrollHeight > h3.clientHeight + 1) ? 'block' : 'none';
+      }
+    });
+    target.querySelectorAll('.project-desc').forEach(desc => {
+      if (desc.classList.contains('expanded')) return;
+      const p = desc.querySelector('p');
+      const toggle = desc.querySelector('.project-desc-toggle');
+      if (p && toggle) {
+        toggle.style.display = (p.scrollHeight > p.clientHeight + 1) ? 'block' : 'none';
+      }
+    });
+    target.querySelectorAll('.project-impact-wrap').forEach(wrap => {
+      if (wrap.classList.contains('expanded')) return;
+      const impact = wrap.querySelector('.project-impact');
+      const toggle = wrap.querySelector('.project-impact-toggle');
+      if (impact && toggle) {
+        toggle.style.display = (impact.scrollHeight > impact.clientHeight + 1) ? 'block' : 'none';
+      }
+    });
+  }, 50);
+
   currentPage = index;
   currentIndicator.textContent = currentPage + 1;
   prevBtn.disabled = currentPage === 0;
@@ -73,6 +101,88 @@ prevBtn.addEventListener('click', () => {
 
 nextBtn.addEventListener('click', () => {
   if (currentPage < totalPages - 1) showPage(currentPage + 1, 'forward');
+});
+
+// Project title show more/less (ellipsis at 2 lines)
+document.querySelectorAll('.project-title').forEach(titleWrap => {
+  const h3 = titleWrap.querySelector('h3');
+  if (!h3) return;
+  const toggle = document.createElement('button');
+  toggle.className = 'project-title-toggle';
+  toggle.textContent = '...';
+  titleWrap.appendChild(toggle);
+
+  function checkOverflow() {
+    if (titleWrap.classList.contains('expanded')) return;
+    const clamped = h3.scrollHeight > h3.clientHeight + 1;
+    toggle.style.display = clamped ? 'block' : 'none';
+  }
+
+  toggle.addEventListener('click', () => {
+    const expanded = titleWrap.classList.toggle('expanded');
+    toggle.textContent = expanded ? 'show less' : '...';
+  });
+
+  checkOverflow();
+  window.addEventListener('resize', checkOverflow);
+  if (document.fonts) {
+    document.fonts.ready.then(checkOverflow);
+  }
+});
+
+// Project description show more/less
+document.querySelectorAll('.project-desc').forEach(desc => {
+  const p = desc.querySelector('p');
+  if (!p) return;
+  const toggle = document.createElement('button');
+  toggle.className = 'project-desc-toggle';
+  toggle.textContent = '...';
+  desc.appendChild(toggle);
+
+  function checkOverflow() {
+    if (desc.classList.contains('expanded')) return;
+    const clamped = p.scrollHeight > p.clientHeight + 1;
+    toggle.style.display = clamped ? 'block' : 'none';
+  }
+
+  toggle.addEventListener('click', () => {
+    const expanded = desc.classList.toggle('expanded');
+    toggle.textContent = expanded ? 'show less' : '...';
+  });
+
+  // Check after fonts load & on resize
+  checkOverflow();
+  window.addEventListener('resize', checkOverflow);
+  if (document.fonts) {
+    document.fonts.ready.then(checkOverflow);
+  }
+});
+
+// Project impact show more/less
+document.querySelectorAll('.project-impact-wrap').forEach(wrap => {
+  const impact = wrap.querySelector('.project-impact');
+  if (!impact) return;
+  const toggle = document.createElement('button');
+  toggle.className = 'project-impact-toggle';
+  toggle.textContent = '...';
+  wrap.appendChild(toggle);
+
+  function checkOverflow() {
+    if (wrap.classList.contains('expanded')) return;
+    const clamped = impact.scrollHeight > impact.clientHeight + 1;
+    toggle.style.display = clamped ? 'block' : 'none';
+  }
+
+  toggle.addEventListener('click', () => {
+    const expanded = wrap.classList.toggle('expanded');
+    toggle.textContent = expanded ? 'show less' : '...';
+  });
+
+  checkOverflow();
+  window.addEventListener('resize', checkOverflow);
+  if (document.fonts) {
+    document.fonts.ready.then(checkOverflow);
+  }
 });
 
 // Scroll reveal animation

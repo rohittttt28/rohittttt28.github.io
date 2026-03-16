@@ -833,10 +833,78 @@ ul { list-style: none; }
   margin-bottom: 1.25rem;
 }
 
-.project-card h3 {
+.project-title {
+  min-height: calc(1.15rem * 1.3 * 2);
+  margin-bottom: 0.75rem;
+}
+
+.project-title h3 {
   font-size: 1.15rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-title.expanded h3 {
+  display: block;
+  -webkit-line-clamp: unset;
+}
+
+.project-title-toggle {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-family: var(--mono);
+  cursor: pointer;
+  padding: 0.15rem 0;
+  margin-top: 0.2rem;
+  display: none;
+}
+
+.project-title-toggle:hover {
+  text-decoration: underline;
+}
+
+.project-desc {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.project-desc p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-desc.expanded p {
+  display: block;
+  -webkit-line-clamp: unset;
+}
+
+.project-desc-toggle {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  cursor: pointer;
+  padding: 0.25rem 0;
+  margin-top: 0.35rem;
+  display: none;
+}
+
+.project-desc-toggle:hover {
+  text-decoration: underline;
 }
 
 .project-card p {
@@ -846,16 +914,45 @@ ul { list-style: none; }
   line-height: 1.7;
 }
 
+.project-impact-wrap {
+  margin-bottom: 1rem;
+  min-height: calc(0.85rem * 1.5 * 3 + 0.8rem);
+}
+
 .project-impact {
   font-family: var(--mono);
   font-size: 0.85rem;
   color: var(--accent);
   font-weight: 500;
-  margin-bottom: 1rem;
   padding: 0.4rem 0.75rem;
   background: var(--accent-glow);
   border-radius: 6px;
-  display: inline-block;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+.project-impact-wrap.expanded .project-impact {
+  display: block;
+  -webkit-line-clamp: unset;
+}
+
+.project-impact-toggle {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-family: var(--mono);
+  cursor: pointer;
+  padding: 0.15rem 0;
+  margin-top: 0.2rem;
+  display: none;
+}
+
+.project-impact-toggle:hover {
+  text-decoration: underline;
 }
 
 .project-tags {
